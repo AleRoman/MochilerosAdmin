@@ -1,0 +1,85 @@
+<app-app-menu>
+
+<!--Lista de Destinos en la plataforma-->
+    <div class="column table-container">
+        <div class="container columns">
+            <div class="column">
+                <h1 class="title is-1 texto-morado ">Destinos</h1>
+            </div>
+
+            <div class="column is-pulled-right">
+                <button class="is-pulled-right button morado2" (click)="openModal()">Crear Destino</button>
+            </div>
+        </div>
+        <hr>
+
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th class="title title is-4 morado">Destino</th>
+                    <th class="title title is-4 morado">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let destino of destinos">
+                    <th>{{destino.data.nombre}}</th>
+                    <td>
+                        <div class="buttons is-pulled-right">
+                            <button class="button is-primary" (click)="openModal2(destino)">Editar</button>
+                            <button class="button is-danger " (click)= "deleteDestino(destino)">Eliminar</button>
+                        </div>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--Termina lista de destinos-->
+    <!--Modal de registro-->
+    <div *ngIf="showModal" class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Crear Destino</p>
+                <button class="delete" aria-label="close" (click)="closeModal()"></button>
+            </header>
+            <form [formGroup]="newDestinoForm" (ngSubmit)="submitDestinoData()">
+                <section class="modal-card-body">
+
+                    <label class="label" for="nombre">Nombre</label>
+                    <input class="input" type="text" formControlName="nombre">
+                </section>
+                <footer class="modal-card-foot ">
+                    <input type="submit" class="button is-primary is-pulled-right" [disabled]="!newDestinoForm.valid" value="Agregar">
+                </footer>
+            </form>
+        </div>
+    </div>
+    <!--Termina modal de resgistro-->
+
+    <!--Modal de edición-->
+    <div *ngIf="showModal2" class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Editar Destino</p>
+                    <button class="delete" aria-label="close" (click)="closeModal2()"></button>
+                </header>
+                <form [formGroup]="updateDestinoForm" (ngSubmit)="updateDestinoData()">
+                    <section class="modal-card-body">
+    
+                        <label class="label" for="nombre">Nombre</label>
+                        <input class="input" type="text" formControlName="nombre">
+                    </section>
+                    <footer class="modal-card-foot ">
+                        <input type="submit" class="button is-primary is-pulled-right" [disabled]="!updateDestinoForm.valid" value="Agregar">
+                    </footer>
+                </form>
+            </div>
+        </div>
+        <!--Termina modal de edición-->
+
+</app-app-menu>

@@ -1,0 +1,85 @@
+<app-app-menu>
+        <div class="container">
+            <h1 class="title  is-2">Crear Restaurante</h1>
+            <form [formGroup]="restauranteForm" (ngSubmit)="submitRestauranteData()">
+                <div class="columns">
+    
+                    <div class="column">
+    
+                        <div class="field">
+                            <label class="label">Nombre</label>
+                            <div class="control">
+                                <input class="input is-primary" type="text" placeholder="Nombre" formControlName="nombre">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Descripción</label>
+    
+                            <div class="control">
+                                <textarea class="textarea is-primary" placeholder="Descripción"
+                                    formControlName="descripcion"></textarea>
+                            </div>
+                        </div>
+    
+                        <!--Input de  Imagen-->
+                        <div class="field">
+                            <label class="label">Elige la foto principal del restaurante</label>
+    
+                            <div class="control">
+                                <input class="input is-rounded is-primary" type="file" name="image"
+                                    (change)="fileProgress($event)" />
+                            </div>
+                            <div *ngIf="fileUploadProgress">
+                                Upload progress: {{ fileUploadProgress }}
+                            </div>
+                            <div class="image-preview mb-3" *ngIf="previewUrl">
+                                <img [src]="previewUrl" height="300" />
+                            </div>
+    
+                            <div class="mb-3" *ngIf="uploadedFilePath">
+                                {{uploadedFilePath}}
+                            </div>
+    
+    
+                        </div>
+    
+                        <!--Termina input de imagen-->
+                    </div>
+    
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Precio aproximado por comida</label>
+                            <div class="control">
+                                <input class="input is-primary" type="text" placeholder="Aproximado de precio por comida"
+                                    formControlName="precio_promedio">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Dirección</label>
+                            <div class="control">
+                                <textarea class="textarea is-primary" placeholder="Dirección"
+                                    formControlName="locacion"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Destino</label>
+                            <div class="control">
+                                <div class="select is-primary">
+                                    <select formControlName="destinoReference">
+                                        <option>Selecciona una opción</option>
+                                        <option *ngFor="let destino of destinos" value="{{destino.id}}">{{destino.data.nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="button is-primary is-pulled-right" type="submit" [disabled] = "!restauranteForm.valid">Submit</button>
+                        </div>
+    
+                    </div>
+    
+                </div>
+            </form>
+        </div>
+    </app-app-menu>

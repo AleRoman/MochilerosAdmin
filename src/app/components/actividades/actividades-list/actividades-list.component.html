@@ -1,0 +1,52 @@
+<app-app-menu>
+        <!--Lista de Actividades en la plataforma-->
+        <div class="column table-container">
+            <div class="container columns">
+                <div class="column">
+                    <h1 class="title is-1 texto-morado ">Actividades</h1>
+                </div>
+    
+                <div class="column is-pulled-right">
+                    <button class="is-pulled-right button " routerLink="/actividad-register">Crear Actividad</button>
+                </div>
+            </div>
+            <hr>
+    
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="title title is-4 morado">Actividad</th>
+                        <th class="title title is-4 morado">Destino</th>
+                        <th class="title title is-4 morado">Precio</th>
+                        <th class="title title is-4 morado">Acciones</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr *ngFor="let actividad of actividades">
+                        <th>{{actividad.data.nombre}}</th>
+                        <th>
+                            <ul *ngFor="let destino of destinos">
+    
+                                <li *ngIf="actividad.data.destinoReference == destino.id">{{destino.data.nombre}}</li>
+                            </ul>
+    
+                        </th>
+                        <th>{{actividad.data.precio_promedio | currency}}</th>
+                        <td>
+                            <div class="buttons is-pulled-right">
+                                <button class="button is-primary " routerLink = "/actividad-edit/{{actividad.id}}">Editar</button>
+                                <button class="button is-danger " (click)= "deleteActividad(actividad)">Eliminar</button>
+                            </div>
+    
+                        </td>
+    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <!--Termina lista de actividades-->
+    
+    
+    </app-app-menu>

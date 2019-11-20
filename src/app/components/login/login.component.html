@@ -1,0 +1,33 @@
+<section class="hero morado is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4 ">
+                <div class='card-content is-flex is-horizontal-center'>
+                    <figure class="image is-128x128">
+                        <img class="is-rounded" src="../../../assets/images/Mochileros6.png">
+                    </figure>
+                </div>
+                <h3 class="title has-text-white">Mochileros</h3>
+                <hr class="login-hr">
+                <p class="subtitle has-text-white">Please login to proceed.</p>
+                <div class="box">
+                    <form >
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" type="email" placeholder="Your Email" autofocus="" #username>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" type="password" placeholder="Your Password" #password>
+                            </div>
+                        </div>
+                        <button class="button is-block morado is-large is-fullwidth" (click)="signIn(username.value, password.value)">Login <i class="fa fa-sign-in"
+                                aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
